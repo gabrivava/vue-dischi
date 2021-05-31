@@ -11,33 +11,51 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- header -->
-    <header>
-        <i class="fab fa-spotify logo"></i>
-    </header>
 
-    <!-- main -->
-    <main id="root">
-        <div class="albums">
-            <div v-for="album in albums" class="album">
-                <img :src="album.poster" alt="">
-                <h2 class="titolo">{{album.title}}</h2>
-                <div class="info">
-                    <div class="autore">
-                        {{album.author}}
+    <div id="root">
+
+        <!-- header -->
+        <header>
+
+            <!-- logo -->
+            <i class="fab fa-spotify logo"></i>
+
+            <!-- ricerca Genere -->
+            <div class="filtra">
+                <span>Search a genre</span>
+                <select name="generi" id="generi" v-model="genere">
+                    <option v-for="genere in generi" >
+                        {{genere}}
+                    </option>
+                </select>
+            </div>
+            
+        </header>
+
+        <!-- main -->
+        <main>
+            <div class="albums">
+                <div v-for="(album, index) in albums" class="album" v-if="chekGenere(index)">
+                    <img :src="album.poster" alt="">
+                    <h2 class="titolo">{{album.title}}</h2>
+                    <div class="info">
+                        <div class="autore">
+                            {{album.author}}
+                        </div>
+                        <div class="anno">
+                            {{album.year}}
+                        </div>
                     </div>
-                    <div class="anno">
-                        {{album.year}}
-                    </div>
-                </div>
                 
 
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+        
+    </div>
     <!-- script AJAX e Vue js -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script src="./main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+        <script src="./main.js"></script>
 </body>
 </html>
