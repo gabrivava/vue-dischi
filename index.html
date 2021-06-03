@@ -20,9 +20,22 @@
             <!-- logo -->
             <i class="fab fa-spotify logo"></i>
 
+            <!-- order by year -->
+            <div class="ordina">
+                <span>Order By</span>
+                <select id="ordina" @change="oderByYearUp(selected)" v-model="selected">
+                    <option> 
+                        from the most recent
+                    </option>
+                    <option>
+                        from the least recent   
+                    </option>
+                </select>
+            </div>
+
             <!-- ricerca Genere -->
             <div class="filtra">
-                <span>Search a genre</span>
+                <span>Search a Genre</span>
                 <select name="generi" id="generi" v-model="genere">
                     <option v-for="genere in generi" >
                         {{genere}}

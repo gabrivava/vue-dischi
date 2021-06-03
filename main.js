@@ -10,6 +10,7 @@ const app = new Vue({
         albums: (''),
         genere: '',
         generi: ['All'],
+        selected: null,
     },
     methods: {
 
@@ -19,6 +20,25 @@ const app = new Vue({
             } else if (this.albums[index].genre.includes(this.genere)) {
                 return true;
             }
+        },
+        oderByYearUp(selected) {
+            //console.log(selected);
+
+            if (selected === 'from the most recent') {
+
+                this.albums.sort((a, b) => {
+                    return b.year - a.year;
+                });
+                //console.log(this.albums);
+
+            } else if (selected === 'from the least recent') {
+
+                this.albums.sort((a, b) => {
+                    return a.year - b.year;
+                });
+
+            }
+
         }
     },
     mounted() {
@@ -36,7 +56,7 @@ const app = new Vue({
                     this.generi.push(element.genre)
                 } 
             }
-            console.log(this.generi);
+            //console.log(this.generi);
         })
     }
 })
